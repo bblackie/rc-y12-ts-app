@@ -29,5 +29,13 @@ def mission():
     results = cursor.fetchall()
     return results
 
+@app.route("/contents")
+def contents():
+    cursor = get_db().cursor()
+    sql = "SELECT * FROM contents"
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    return render_template("contents.html", results=results)
+
 if __name__ == "__main__":
     app.run(debug=True)
