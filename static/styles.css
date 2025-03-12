@@ -1,0 +1,65 @@
+body {
+    background-color: #0a0a2a;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(to right, #1e1e5a, #0a0a2a);
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#missions {
+    text-align: center;
+    margin: 20px;
+}
+
+.mission-image {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+#missions-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.mission-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s;
+}
+
+.mission-card:hover {
+    transform: scale(1.05);
+}
