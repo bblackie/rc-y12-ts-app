@@ -9,57 +9,22 @@
 <body>
     <header>
         <h1>Space Missions Database</h1>
+        <input type="text" id="global-search" placeholder="Search missions, astronauts, spacecraft...">
     </header>
     
     <main>
         <section>
             <h2>Missions</h2>
-            <ul id="missions-list"></ul>
+            <div id="missions-list"></div>
 
             <h2>Astronauts</h2>
-            <ul id="astronauts-list"></ul>
+            <div id="astronauts-list"></div>
 
             <h2>Spacecraft</h2>
-            <ul id="spacecraft-list"></ul>
+            <div id="spacecraft-list"></div>
         </section>
     </main>
 
-    <script>
-        // Fetch missions
-        fetch("/api/missions")
-          .then(response => response.json())
-          .then(data => {
-              let missionList = document.getElementById("missions-list");
-              data.forEach(mission => {
-                  let li = document.createElement("li");
-                  li.textContent = `${mission.Mission_Name} (${mission.Year}) - ${mission.Destination}`;
-                  missionList.appendChild(li);
-              });
-          });
-
-        // Fetch astronauts
-        fetch("/api/astronauts")
-          .then(response => response.json())
-          .then(data => {
-              let astronautList = document.getElementById("astronauts-list");
-              data.forEach(astro => {
-                  let li = document.createElement("li");
-                  li.textContent = `${astro.Name} - ${astro.Role}`;
-                  astronautList.appendChild(li);
-              });
-          });
-
-        // Fetch spacecraft
-        fetch("/api/spacecraft")
-          .then(response => response.json())
-          .then(data => {
-              let spacecraftList = document.getElementById("spacecraft-list");
-              data.forEach(sc => {
-                  let li = document.createElement("li");
-                  li.textContent = `${sc.Spacecraft_Name} (Launch Vehicle: ${sc.Launch_Vehicle})`;
-                  spacecraftList.appendChild(li);
-              });
-          });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

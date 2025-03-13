@@ -23,7 +23,8 @@ h1 {
     margin: 20px;
 }
 
-.mission-image {
+/* Mission, Astronaut, and Spacecraft Images */
+.mission-image, .astronaut-image, .spacecraft-image {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
@@ -31,25 +32,29 @@ h1 {
     margin-bottom: 10px;
 }
 
-
-input {
+/* Global Search Bar */
+#global-search {
     padding: 10px;
     width: 80%;
     max-width: 400px;
     font-size: 1em;
     border-radius: 5px;
     border: none;
+    display: block;
+    margin: 20px auto;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-#missions-list {
+/* Grid Layout for Missions, Astronauts, and Spacecraft */
+#missions-list, #astronauts-list, #spacecraft-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
 }
 
-.mission-card {
+/* Card Design */
+.mission-card, .astronaut-card, .spacecraft-card {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
     margin: 10px;
@@ -60,6 +65,16 @@ input {
     transition: transform 0.3s;
 }
 
-.mission-card:hover {
+.mission-card:hover, .astronaut-card:hover, .spacecraft-card:hover {
     transform: scale(1.05);
+}
+
+/* Links Inside Cards */
+.mission-card a, .astronaut-card a, .spacecraft-card a {
+    text-decoration: none;
+    color: white;
+}
+
+.mission-card a:hover, .astronaut-card a:hover, .spacecraft-card a:hover {
+    color: lightblue;
 }
