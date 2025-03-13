@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+
     <header>
         <h1>Space Missions Database</h1>
         <input type="text" id="global-search" placeholder="Search missions, astronauts, spacecraft...">
     </header>
-    
+
     <main>
         <section>
             <h2>Missions</h2>
+            <!-- Global search input to filter all lists -->
+            <input type="text" id="searchBar" placeholder="Search missions...">
+            <ul id="missionsList"></ul>
             <div id="missions-list"></div>
 
             <h2>Astronauts</h2>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify # type: ignore
+from flask import Flask, render_template, jsonify, request # type: ignore
 import sqlite3
 
 app = Flask(__name__)
@@ -15,17 +15,23 @@ def home():
 @app.route('/api/missions')
 def missions():
     try:
+        search_query = request.args.get('search', '')  # Get search query from URL
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM Mission;")  # Ensure table name is correct
+
+        if search_query:  # If there's a search term, filter results
+            cursor.execute("SELECT * FROM Mission WHERE LOWER(Mission_Name) LIKE ?", ('%' + search_query.lower() + '%',))
+        else:  # If no search term, return all missions
+            cursor.execute("SELECT * FROM Mission;")
+
         missions = cursor.fetchall()
         conn.close()
 
         if not missions:
-            return jsonify({"error": "No missions found"}), 404
+            return jsonify([])  # Return empty list instead of an error
 
         return jsonify([{
-            "Mission_ID": row[0],  # Ensure indexes match database columns
+            "Mission_ID": row[0],  
             "Mission_Name": row[1],
             "Year": row[2],
             "Destination": row[3],
@@ -34,7 +40,7 @@ def missions():
         } for row in missions])
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500  # Return exact error for debugging
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/api/astronauts')
