@@ -84,6 +84,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             })
             .catch(error => console.error("Error fetching missions:", error));
+            fetch("/api/missions")
+    .then(response => response.json())
+    .then(data => {
+        console.log("Missions Data Loaded:", data); // 🔹 Debugging Output
+        allData.missions = data;
+        displayItems(data, "missions");
+    })
+    .catch(error => console.error("Error fetching missions:", error));
+
     });
 
     // Fetch and display all initial data
