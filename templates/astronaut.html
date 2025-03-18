@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronaut Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Astronaut Details</h1>
+        <a href="index.html">← Back to List</a>
+    </header>
+
+    <main>
+        <section id="astronaut-details">
+            <h2 id="astronaut-name"></h2>
+            <img id="astronaut-img" src="" alt="Astronaut Image">
+            <p><strong>Birth Year:</strong> <span id="astronaut-birth"></span></p>
+            <p><strong>Nationality:</strong> <span id="astronaut-nationality"></span></p>
+            <p><strong>Bio:</strong> <span id="astronaut-bio"></span></p>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='astronaut.js') }}"></script>
+</body>
+</html>

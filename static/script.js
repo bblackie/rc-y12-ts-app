@@ -26,24 +26,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to display items in the respective lists
     function displayItems(items, type) {
         let listElement;
-        if (type === "missions") listElement = missionsList;
-        else if (type === "astronauts") listElement = astronautsList;
-        else if (type === "spacecraft") listElement = spacecraftList;
-
-        listElement.innerHTML = "";
+        if (type === "missions") listElement = document.getElementById("missions-list");
+        else if (type === "astronauts") listElement = document.getElementById("astronauts-list");
+        else if (type === "spacecraft") listElement = document.getElementById("spacecraft-list");
+    
+        listElement.innerHTML = ""; // Clear existing content
+    
         items.forEach(item => {
             const card = document.createElement("div");
             card.classList.add("card");
+    
+            // Set correct links and data based on type
+            let itemId, itemName, itemImage, detailsPage;
+            if (type === "missions") {
+                itemId = item.Mission_ID;
+                itemName = item.Mission_Name;
+                itemImage = item.Mission_Img;
+                detailsPage = "mission.html";
+            } else if (type === "astronauts") {
+                itemId = item.Astronaut_ID;
+                itemName = item.Name;
+                itemImage = item.Astronaut_Img;
+                detailsPage = "astronaut.html";
+            } else if (type === "spacecraft") {
+                itemId = item.Spacecraft_ID;
+                itemName = item.Spacecraft_Name;
+                itemImage = item.Spacecraft_Img;
+                detailsPage = "spacecraft.html";
+            }
+    
             card.innerHTML = `
-                <a href="mission.html?id=${item.Mission_ID || item.Astronaut_ID || item.Spacecraft_ID}">
-                    <img src="${item.Mission_Img || item.Astronaut_Img || item.Spacecraft_Img}" 
-                         alt="${item.Mission_Name || item.Name || item.Spacecraft_Name}">
-                    <h3>${item.Mission_Name || item.Name || item.Spacecraft_Name}</h3>
+                <a href="${detailsPage}?id=${itemId}">
+                    <img src="${itemImage}" alt="${itemName}">
+                    <h3>${itemName}</h3>
                 </a>
             `;
+    
             listElement.appendChild(card);
         });
     }
+    
 
     // Function to handle search and filter results
     function handleSearch(query) {
