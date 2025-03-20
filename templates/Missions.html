@@ -4,18 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mission Details</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header>
-        <h1>Mission Details</h1>
-        <a href="index.html">← Back to Missions</a>
+        <h1 id="mission-title"></h1>
+        <input type="text" id="search-bar" placeholder="Search details...">
     </header>
     
-    <main id="mission-details">
-        <h2>Loading...</h2>
+    <main>
+        <img id="mission-image" src="" alt="Mission Image">
+        <p id="mission-description"></p>
     </main>
 
-    <script src="static/mission.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const missionId = params.get("id");
+
+        fetch("missions.json")
+            .then(response => response.json())
+            .then(data => {
+                const mission = data.missions.find(m => m.id == missionId);
+                if (mission) {
+                    document.getElementById("mission-title").textContent = mission.name;
+                    document.getElementById("mission-image").src = mission.image || "static/default.png";
+                    document.getElementById("mission-description").textContent = mission.description;
+                }
+            });
+    </script>
 </body>
 </html>
+
