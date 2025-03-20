@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, send_from_directory  # type: ignore
+from flask import Flask, render_template, jsonify, request, send_from_directory, url_for  # Added url_for for static images
 import sqlite3
 import os
 
@@ -17,37 +17,36 @@ def home():
 # 🚀 API: Get All Missions (Searchable)
 @app.route('/api/missions')
 def missions():
-    try:
-        search_query = request.args.get('search', '').strip().lower()
-        conn = get_db_connection()
-        cursor = conn.cursor()
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT m.Mission_ID, m.Mission_Name, m.Year, m.Destination, m.Outcome, i.images_mission_url
+        FROM Mission m
+        LEFT JOIN images_Mission i ON m.Mission_ID = i.Mission_ID
+    """)
+    missions = cursor.fetchall()
+    conn.close()
 
-        if search_query:
-            cursor.execute("SELECT * FROM Mission WHERE LOWER(Mission_Name) LIKE ?", ('%' + search_query + '%',))
-        else:
-            cursor.execute("SELECT * FROM Mission;")
+    return jsonify([{
+        "Mission_ID": row["Mission_ID"],
+        "Mission_Name": row["Mission_Name"],
+        "Year": row["Year"],
+        "Destination": row["Destination"],
+        "Outcome": row["Outcome"],
+        "Mission_Img": row["images_mission_url"] if row["images_mission_url"] else "static/images/placeholder.jpg"
+    } for row in missions])
 
-        missions = cursor.fetchall()
-        conn.close()
-
-        return jsonify([{
-            "Mission_ID": row["Mission_ID"],  
-            "Mission_Name": row["Mission_Name"],
-            "Year": row["Year"],
-            "Destination": row["Destination"],
-            "Outcome": row["Outcome"],
-            "Mission_Img": row["Mission_Img"] or "static/placeholder.jpg"
-        } for row in missions])
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 # 👨‍🚀 API: Get All Astronauts
 @app.route('/api/astronauts')
 def astronauts():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Astronaut")
+    cursor.execute("""
+        SELECT a.Astronaut_ID, a.Name, a.Role, i.image_people_url
+        FROM Astronaut a
+        LEFT JOIN images_Astronaut i ON a.Astronaut_ID = i.Astronaut_ID
+    """)
     astronauts = cursor.fetchall()
     conn.close()
 
@@ -55,15 +54,20 @@ def astronauts():
         "Astronaut_ID": row["Astronaut_ID"],
         "Name": row["Name"],
         "Role": row["Role"],
-        "Astronaut_Img": row["Astronaut_Img"] or "static/placeholder.jpg"
+        "Astronaut_Img": row["image_people_url"] if row["image_people_url"] else "static/images/placeholder.jpg"
     } for row in astronauts])
+
 
 # 🛰 API: Get All Spacecraft
 @app.route('/api/spacecraft')
 def spacecraft():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Spacecraft")
+    cursor.execute("""
+        SELECT s.Spacecraft_ID, s.Spacecraft_Name, s.Launch_Vehicle, i.image_spacecraft_url
+        FROM Spacecraft s
+        LEFT JOIN images_spacecraft i ON s.Spacecraft_ID = i.Spacecraft_ID
+    """)
     spacecraft = cursor.fetchall()
     conn.close()
 
@@ -71,8 +75,9 @@ def spacecraft():
         "Spacecraft_ID": row["Spacecraft_ID"],
         "Spacecraft_Name": row["Spacecraft_Name"],
         "Launch_Vehicle": row["Launch_Vehicle"],
-        "Spacecraft_Img": row["Spacecraft_Img"] or "static/placeholder.jpg"
+        "Spacecraft_Img": row["image_spacecraft_url"] if row["image_spacecraft_url"] else "static/images/placeholder.jpg"
     } for row in spacecraft])
+
 
 # 🌍 API: Get Specific Mission Details
 @app.route('/mission/<int:id>')
@@ -113,7 +118,7 @@ def spacecraft_details(id):
         return render_template('spacecraft.html', spacecraft=spacecraft)
     return "Spacecraft not found", 404
 
-# 🖼 Serve Images Correctly (if stored in static/img/)
+# 🖼 Serve Images Correctly (if stored in static/images/)
 @app.route('/static/<path:filename>')
 def static_files(filename):
     return send_from_directory(app.static_folder, filename)
