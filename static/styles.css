@@ -18,18 +18,10 @@ h1 {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-#missions {
+/* Centered Section for Missions, Astronauts, and Spacecraft */
+#missions, #astronauts, #spacecraft {
     text-align: center;
     margin: 20px;
-}
-
-/* Mission, Astronaut, and Spacecraft Images */
-.mission-image, .astronaut-image, .spacecraft-image {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
 }
 
 /* Global Search Bar */
@@ -77,4 +69,26 @@ h1 {
 
 .mission-card a:hover, .astronaut-card a:hover, .spacecraft-card a:hover {
     color: lightblue;
+}
+
+/* ✨ Added Image Styling */
+.thumbnail {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Center Text Inside Cards */
+.mission-card p, .astronaut-card p, .spacecraft-card p {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+
+/* ✨ Improve Hover Effects */
+.thumbnail:hover {
+    opacity: 0.8;
 }

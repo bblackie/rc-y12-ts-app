@@ -3,30 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Missions</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Space Exploration</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Space Missions Database</h1>
-        <input type="text" id="global-search" placeholder="Search missions, astronauts, spacecraft...">
-    </header>
+    <h1>🚀 Space Exploration</h1>
 
-    <main>
-        <section>
-            <h2>Missions</h2>
-<div id="missions-list"></div>
+    <!-- 🛰 Missions -->
+    <h2>Missions</h2>
+    <div id="missions"></div>
 
-<h2>Astronauts</h2>
-<div id="astronauts-list"></div>
+    <!-- 👨‍🚀 Astronauts -->
+    <h2>Astronauts</h2>
+    <div id="astronauts"></div>
 
-<h2>Spacecraft</h2>
-<div id="spacecraft-list"></div>
+    <!-- 🚀 Spacecraft -->
+    <h2>Spacecraft</h2>
+    <div id="spacecraft"></div>
 
-        </section>
-    </main>
+    <script>
+        async function fetchData(endpoint, containerId) {
+            const response = await fetch(endpoint);
+            const data = await response.json();
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";  // Clear old content
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+            data.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("card");  
+                div.innerHTML = `
+                    <a href="/${containerId.slice(0, -1)}/${item[Object.keys(item)[0]]}">
+                        <img src="${item[Object.keys(item).find(k => k.includes('Img'))]}" 
+                             alt="${item[Object.keys(item)[1]]}" class="thumbnail">
+                        <p>${item[Object.keys(item)[1]]}</p>
+                    </a>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        fetchData('/api/missions', 'missions');
+        fetchData('/api/astronauts', 'astronauts');
+        fetchData('/api/spacecraft', 'spacecraft');
+    </script>
+
 </body>
 </html>
