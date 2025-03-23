@@ -7,46 +7,26 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+    <header>
+        <h1>🚀 Space Exploration</h1>
+        <input type="text" id="global-search" placeholder="Search...">
+    </header>
 
-    <h1>🚀 Space Exploration</h1>
+    <div id="missions">
+        <h2>Missions</h2>
+        <div id="missions-list"></div>
+    </div>
 
-    <!-- 🛰 Missions -->
-    <h2>Missions</h2>
-    <div id="missions"></div>
+    <div id="astronauts">
+        <h2>Astronauts</h2>
+        <div id="astronauts-list"></div>
+    </div>
 
-    <!-- 👨‍🚀 Astronauts -->
-    <h2>Astronauts</h2>
-    <div id="astronauts"></div>
+    <div id="spacecraft">
+        <h2>Spacecraft</h2>
+        <div id="spacecraft-list"></div>
+    </div>
 
-    <!-- 🚀 Spacecraft -->
-    <h2>Spacecraft</h2>
-    <div id="spacecraft"></div>
-
-    <script>
-        async function fetchData(endpoint, containerId) {
-            const response = await fetch(endpoint);
-            const data = await response.json();
-            const container = document.getElementById(containerId);
-            container.innerHTML = "";  // Clear old content
-
-            data.forEach(item => {
-                const div = document.createElement("div");
-                div.classList.add("card");  
-                div.innerHTML = `
-                    <a href="/${containerId.slice(0, -1)}/${item[Object.keys(item)[0]]}">
-                        <img src="${item[Object.keys(item).find(k => k.includes('Img'))]}" 
-                             alt="${item[Object.keys(item)[1]]}" class="thumbnail">
-                        <p>${item[Object.keys(item)[1]]}</p>
-                    </a>
-                `;
-                container.appendChild(div);
-            });
-        }
-
-        fetchData('/api/missions', 'missions');
-        fetchData('/api/astronauts', 'astronauts');
-        fetchData('/api/spacecraft', 'spacecraft');
-    </script>
-
+    <script src="static/script.js"></script>
 </body>
 </html>

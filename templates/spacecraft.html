@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spacecraft Details</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <header>
@@ -12,16 +12,8 @@
         <a href="index.html">← Back to List</a>
     </header>
 
-    <main>
-        <section id="spacecraft-details">
-            <h2 id="spacecraft-name"></h2>
-            <img id="spacecraft-img" src="" alt="Spacecraft Image">
-            <p><strong>Launch Year:</strong> <span id="spacecraft-year"></span></p>
-            <p><strong>Manufacturer:</strong> <span id="spacecraft-manufacturer"></span></p>
-            <p><strong>Description:</strong> <span id="spacecraft-description"></span></p>
-        </section>
+    <main id="spacecraft-details">
     </main>
-
-    <script src="{{ url_for('static', filename='spacecraft.js') }}"></script>
+    <script src="static/spacecraft.js"></script>
 </body>
 </html>
