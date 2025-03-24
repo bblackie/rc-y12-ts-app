@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <a href="mission.html?id=${mission.Mission_ID}">
                         <img src="${mission.Mission_Img}" class="thumbnail">
                         <h3>${mission.Mission_Name}</h3>
+                        <p><strong>Year:</strong> ${mission.Year}</p>
+                        <p><strong>Destination:</strong> ${mission.Destination}</p>
+                        <p><strong>Outcome:</strong> ${mission.Outcome}</p>
                     </a>
                 `;
                 container.appendChild(div);

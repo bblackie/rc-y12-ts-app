@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <a href="astronaut.html?id=${astro.Astronaut_ID}">
                         <img src="${astro.Astronaut_Img}" class="thumbnail">
                         <h3>${astro.Name}</h3>
+                        <p><strong>Role:</strong> ${astro.Role}</p>
                     </a>
                 `;
                 container.appendChild(div);

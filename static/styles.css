@@ -1,4 +1,4 @@
-/* 🔹 Space-Themed Background */
+/* 🌌 Space-Themed Background */
 body {
     background-color: black;
     color: white;
@@ -11,9 +11,9 @@ body {
     background-attachment: fixed;
 }
 
-/* 🔹 Header Style */
+/* 🔹 Header */
 header {
-    background: rgba(0, 0, 50, 0.8);
+    background: rgba(0, 0, 50, 0.9);
     padding: 20px;
     border-bottom: 2px solid white;
 }
@@ -24,29 +24,12 @@ h1 {
     text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
 }
 
-/* 🔹 Search Bar */
-#search-bar {
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    font-size: 1.2em;
-    border-radius: 10px;
-    border: none;
-    display: block;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    text-align: center;
-}
-
-/* 🔹 Section Layout */
+/* 🔹 Centering Everything */
 .sections {
     display: flex;
-    justify-content: center;
-    gap: 40px;
+    flex-direction: column;
+    align-items: center;
     margin-top: 50px;
-    flex-wrap: wrap;
 }
 
 /* 🔹 Section Cards */
@@ -62,6 +45,7 @@ h1 {
     cursor: pointer;
     width: 320px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .section-card img {
@@ -76,7 +60,7 @@ h1 {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* 🔹 Spacing for Missions, Astronauts, and Spacecraft */
+/* 🔹 Cards for Missions, Astronauts, Spacecraft */
 #missions-list, #astronauts-list, #spacecraft-list {
     display: flex;
     flex-wrap: wrap;
@@ -85,7 +69,7 @@ h1 {
     gap: 20px;
 }
 
-/* 🔹 Card Design */
+/* 🔹 Card Styling */
 .card {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -97,15 +81,27 @@ h1 {
     transition: transform 0.3s;
 }
 
+/* 🔹 Hover Effect */
 .card:hover {
     transform: scale(1.05);
 }
 
-/* 🔹 Image Thumbnails */
+/* 🔹 Image Styling */
 .thumbnail {
     width: 100%;
-    max-height: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0px 0px 10px white;
+}
+
+/* 🔹 Text Styling */
+.card h3 {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.card p {
+    font-size: 1.2em;
+    margin-top: 5px;
 }

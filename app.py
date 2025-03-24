@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 def get_db_connection():
     conn = sqlite3.connect('dgt_term_1_internal.db')
-    conn.row_factory = sqlite3.Row  # Enables column name access
+    conn.row_factory = sqlite3.Row
     return conn
 
 # 🏠 **Homepage**
@@ -77,17 +77,41 @@ def spacecraft():
 # 🌍 **Serve Dynamic Mission Details**
 @app.route('/mission/<int:mission_id>')
 def mission_details(mission_id):
-    return render_template('mission.html', mission_id=mission_id)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Mission WHERE Mission_ID = ?", (mission_id,))
+    mission = cursor.fetchone()
+    conn.close()
+
+    if mission:
+        return render_template('mission.html', mission=mission)
+    return "Mission not found", 404
 
 # 👨‍🚀 **Serve Dynamic Astronaut Details**
 @app.route('/astronaut/<int:astronaut_id>')
 def astronaut_details(astronaut_id):
-    return render_template('astronaut.html', astronaut_id=astronaut_id)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Astronaut WHERE Astronaut_ID = ?", (astronaut_id,))
+    astronaut = cursor.fetchone()
+    conn.close()
+
+    if astronaut:
+        return render_template('astronaut.html', astronaut=astronaut)
+    return "Astronaut not found", 404
 
 # 🚀 **Serve Dynamic Spacecraft Details**
 @app.route('/spacecraft/<int:spacecraft_id>')
 def spacecraft_details(spacecraft_id):
-    return render_template('spacecraft.html', spacecraft_id=spacecraft_id)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Spacecraft WHERE Spacecraft_ID = ?", (spacecraft_id,))
+    spacecraft = cursor.fetchone()
+    conn.close()
+
+    if spacecraft:
+        return render_template('spacecraft.html', spacecraft=spacecraft)
+    return "Spacecraft not found", 404
 
 # 🔎 **Search API (For Homepage)**
 @app.route('/api/search')
