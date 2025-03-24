@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const params = new URLSearchParams(window.location.search);
-    const astronautId = params.get("id");
-
-    if (!astronautId) {
-        document.getElementById("astronaut-details").innerHTML = "<p>Astronaut not found.</p>";
-        return;
-    }
-
-    fetch(`/api/astronauts/${astronautId}`)
+    fetch('/api/astronauts')
         .then(response => response.json())
-        .then(astronaut => {
-            document.getElementById("astronaut-details").innerHTML = `
-                <h2>${astronaut.Name}</h2>
-                <img src="${astronaut.Astronaut_Img}" alt="${astronaut.Name}" class="astronaut-image">
-                <p><strong>Birth Year:</strong> ${astronaut.Birth_Year}</p>
-                <p><strong>Nationality:</strong> ${astronaut.Nationality}</p>
-                <p><strong>Bio:</strong> ${astronaut.Biography}</p>
-            `;
-        })
-        .catch(error => console.error("Error fetching astronaut details:", error));
+        .then(data => {
+            const container = document.getElementById("astronauts-list");
+            container.innerHTML = "";
+
+            data.forEach(astro => {
+                const div = document.createElement("div");
+                div.classList.add("card");
+                div.innerHTML = `
+                    <a href="astronaut.html?id=${astro.Astronaut_ID}">
+                        <img src="${astro.Astronaut_Img}" class="thumbnail">
+                        <h3>${astro.Name}</h3>
+                    </a>
+                `;
+                container.appendChild(div);
+            });
+        });
 });

@@ -7,25 +7,28 @@
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
+
     <header>
         <h1>🚀 Space Exploration</h1>
-        <input type="text" id="global-search" placeholder="Search...">
+        <input type="text" id="search-bar" placeholder="Search for Missions, Astronauts, or Spacecraft...">
     </header>
 
-    <div id="missions">
-        <h2>Missions</h2>
-        <div id="missions-list"></div>
-    </div>
+    <main class="sections">
+        <div class="section-card" onclick="window.location.href='missions.html'">
+            <img src="static/images/missions.jpg" alt="Missions">
+            <h2>🛰 Missions</h2>
+        </div>
 
-    <div id="astronauts">
-        <h2>Astronauts</h2>
-        <div id="astronauts-list"></div>
-    </div>
+        <div class="section-card" onclick="window.location.href='astronauts.html'">
+            <img src="static/images/astronauts.jpg" alt="Astronauts">
+            <h2>👨‍🚀 Astronauts</h2>
+        </div>
 
-    <div id="spacecraft">
-        <h2>Spacecraft</h2>
-        <div id="spacecraft-list"></div>
-    </div>
+        <div class="section-card" onclick="window.location.href='spacecraft.html'">
+            <img src="static/images/spacecraft.jpg" alt="Spacecraft">
+            <h2>🚀 Spacecraft</h2>
+        </div>
+    </main>
 
     <script src="static/script.js"></script>
 </body>
