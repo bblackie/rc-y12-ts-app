@@ -20,7 +20,7 @@ def missions_page():
 
 @app.route('/astronauts.html')
 def astronauts_page():
-    return render_template('astronauts.html')
+    return render_template('astronaut.html')
 
 @app.route('/spacecraft.html')
 def spacecraft_page():
@@ -36,6 +36,7 @@ def missions():
                i.images_mission_url AS Mission_Img
         FROM Mission m
         LEFT JOIN images_Mission i ON m.Mission_ID = i.Mission_ID
+        ORDER BY m.Year, m.Mission_Name, m.Destination, m.Outcome DESC
     """)
     missions = cursor.fetchall()
     conn.close()
@@ -52,6 +53,7 @@ def astronauts():
                i.image_people_url AS Astronaut_Img
         FROM Astronaut a
         LEFT JOIN images_Astronaut i ON a.Astronaut_ID = i.Astronaut_ID
+        
     """)
     astronauts = cursor.fetchall()
     conn.close()
