@@ -17,5 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
                 container.appendChild(div);
             });
+        })
+        .catch(error => {
+            console.error("Error loading astronauts:", error);
+            document.getElementById("astronauts-list").innerHTML = "<p>Error loading data. Please try again.</p>";
         });
 });
