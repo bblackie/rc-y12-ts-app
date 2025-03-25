@@ -85,11 +85,6 @@ p {
     transition: transform 0.3s;
 }
 
-/* 🔹 Hover Effect */
-.card:hover {
-    transform: scale(1.05);
-}
-
 /* 🔹 Image Styling */
 .thumbnail {
     width: 100%;
