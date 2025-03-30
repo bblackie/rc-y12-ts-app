@@ -49,16 +49,17 @@ def astronauts():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT a.Astronaut_ID, a.Name, a.Role, 
+        SELECT a.Astronaut_ID, a.Name, a.Role, a.Nationality, a.Date_of_Birth, 
                i.image_people_url AS Astronaut_Img
         FROM Astronaut a
         LEFT JOIN images_Astronaut i ON a.Astronaut_ID = i.Astronaut_ID
-        
+        ORDER BY a.Date_of_Birth, a.Name, a.Role, a.Nationality DESC
     """)
     astronauts = cursor.fetchall()
     conn.close()
 
     return jsonify([dict(row) for row in astronauts])
+
 
 # 🛰 **Get All Spacecraft**
 @app.route('/api/spacecraft')
@@ -66,10 +67,11 @@ def spacecraft():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT s.Spacecraft_ID, s.Spacecraft_Name, s.Launch_Vehicle, 
+        SELECT s.Spacecraft_ID, s.Spacecraft_Name, s.Launch_Vehicle, s.First_launch, s.Operator, s.Crew_Capacity, s.Notable_Missions,
                i.image_spacecraft_url AS Spacecraft_Img
         FROM Spacecraft s
         LEFT JOIN images_spacecraft i ON s.Spacecraft_ID = i.Spacecraft_ID
+        ORDER BY s.First_launch, s.Spacecraft_Name,  s.Launch_Vehicle, s.Operator, s.Crew_Capacity, s.Notable_Missions DESC
     """)
     spacecraft = cursor.fetchall()
     conn.close()

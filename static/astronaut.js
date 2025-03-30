@@ -8,13 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
             data.forEach(astro => {
                 const div = document.createElement("div");
                 div.classList.add("card");
+
+                // Corrected: Template literal with backticks
                 div.innerHTML = `
                     <a href="astronaut.html?id=${astro.Astronaut_ID}">
                         <img src="${astro.Astronaut_Img}" class="thumbnail">
                         <h3>${astro.Name}</h3>
                         <p><strong>Role:</strong> ${astro.Role}</p>
+                        <p><strong>Nationality:</strong> ${astro.Nationality}</p>
+                        <p><strong>Date of Birth:</strong> ${astro.Date_of_Birth}</p>
+                        
                     </a>
                 `;
+
                 container.appendChild(div);
             });
         })

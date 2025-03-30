@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         <img src="${sc.Spacecraft_Img}" class="thumbnail">
                         <h3>${sc.Spacecraft_Name}</h3>
                         <p><strong>Launch Vehicle:</strong> ${sc.Launch_Vehicle}</p>
+                        <p><strong>First Launch:</strong> ${sc.First_Launch}</p>
+                        <p><strong>Operator:</strong> ${sc.Operator}</p>
+                        <p><strong>Crew Capacity:</strong> ${sc.Crew_Capacity}</p>
+                        <p><strong>Notable Missions:</strong> ${sc.Notable_Missions}</p>
                     </a>
                 `;
                 container.appendChild(div);

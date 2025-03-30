@@ -1,4 +1,4 @@
-/* 🌌 Space-Themed Background */
+/* Space-Themed Background */
 body {
     background-color: black;
     color: white;
@@ -11,7 +11,7 @@ body {
     background-attachment: fixed;
 }
 
-/* 🔹 Header */
+/* Header */
 header {
     background: rgba(0, 0, 50, 0.9);
     padding: 20px;
@@ -19,19 +19,19 @@ header {
 }
 
 header h1 {
-    color: #ffffff; /* Bright yellowish-white */
+    color: #ffffff; 
     font-size: 2.7rem;
     font-weight: bold;
     text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.8); /* Glow effect */
 }
 
-/* 🔹 General Text Styling */
+/* General Text Styling */
 p {
     font-size: 1.2em;
     color: lightgray;
 }
 
-/* 🔹 Centering Everything */
+/* Centering Everything */
 .sections {
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@ p {
     margin-top: 50px;
 }
 
-/* 🔹 Section Cards */
+/*  Section Cards */
 .section-card {
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
@@ -55,13 +55,13 @@ p {
     margin-bottom: 20px;
 }
 
-/* 🔹 Links Styling */
+/* Links Styling */
 a {
     text-decoration: none; /* Removes underlines */
     color: white; /* Keeps text readable */
 }
 
-/* ✅ Return Home Button - Clickable */
+
 #return-home {
     pointer-events: auto; /* Allows clicking */
     text-decoration: underline; /* Makes it look like a link */
@@ -73,7 +73,7 @@ a {
     color: white;
 }
 
-/* 🚀 Images Stay on the Same Page When Clicked */
+/* Images Stay on the Same Page When Clicked */
 .card a, .thumbnail {
     pointer-events: auto; /* Keeps clickable */
 }
