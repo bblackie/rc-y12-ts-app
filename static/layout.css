@@ -18,11 +18,14 @@ header {
     border-bottom: 2px solid white;
 }
 
-h1 {
-    font-size: 3em;
-    text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+header h1 {
+    color: #ffffff; /* Bright yellowish-white */
+    font-size: 2.7rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.8); /* Glow effect */
 }
 
+/* 🔹 General Text Styling */
 p {
     font-size: 1.2em;
     color: lightgray;
@@ -52,16 +55,57 @@ p {
     margin-bottom: 20px;
 }
 
-.section-card img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px white;
+/* 🔹 Links Styling */
+a {
+    text-decoration: none; /* Removes underlines */
+    color: white; /* Keeps text readable */
 }
 
-/* 🔹 Hover Effect */
-.section-card:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.2);
+/* ✅ Return Home Button - Clickable */
+#return-home {
+    pointer-events: auto; /* Allows clicking */
+    text-decoration: underline; /* Makes it look like a link */
+    color: #ffcc00; /* Bright color */
+    font-weight: bold;
+}
+
+#return-home:hover {
+    color: white;
+}
+
+/* 🚀 Images Stay on the Same Page When Clicked */
+.card a, .thumbnail {
+    pointer-events: auto; /* Keeps clickable */
+}
+
+.card a {
+    cursor: default; /* Makes it look unclickable */
+    pointer-events: auto;
+}
+
+.card a[href] {
+    pointer-events: auto;
+    text-decoration: none;
+}
+
+.card a[href]:hover {
+    text-decoration: none;
+}
+
+.card a[href^="#"] {
+    text-decoration: none; /* No underlines */
+}
+
+/* 🔹 Make Images Link to the Same Page */
+.card a {
+    pointer-events: auto; /* Allows clicking */
+    text-decoration: none;
+}
+
+.card a[href] {
+    pointer-events: auto;
+    text-decoration: none;
+    cursor: default;
 }
 
 /* 🔹 Cards for Missions, Astronauts, Spacecraft */
@@ -85,7 +129,7 @@ p {
     transition: transform 0.3s;
 }
 
-/* 🔹 Image Styling */
+/* 🔹 Thumbnail Styling */
 .thumbnail {
     width: 100%;
     height: 200px;
