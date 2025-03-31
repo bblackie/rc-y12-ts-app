@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 ## Run the app
 ```
-python main.py
+python app.py
 ```
 
 ## Extra tasks           
